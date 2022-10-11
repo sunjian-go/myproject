@@ -7,10 +7,10 @@ import (
 
 func main() {
 	//初始化mysql
-	//fmt.Println("mysql db: ", dao.DB)
 	dao.InitMysql()
 	//初始化路由
 	r := router.InitRoute()
+	//启动监听
 	r.Run(":9000")
 
 }

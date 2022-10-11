@@ -1,22 +1,16 @@
 package router
 
 import (
-	"bookmanager/model"
-
+	"bookmanager/controller"
 	"github.com/gin-gonic/gin"
 )
 
+//主操作路由
 func RegisterRouter(r *gin.Engine) {
-	r.POST("/register", func(c *gin.Context) {
-		p := new(model.User)
-		err := c.ShouldBindJSON(p)
-		if err != nil {
-			c.JSON(400, gin.H{
-				"msg": err.Error(),
-			})
-			return
-		}
-		c.JSON(200, "auth successfule")
-	})
-
+	r.POST("/register", controller.AuthHandlerFunc)      //用户注册
+	r.POST("/login", controller.LoginFcun)               //用户登录
+	r.POST("/book", controller.CreateBookFunc)           //增加书籍
+	r.GET("/book/:id", controller.GetBookFunc)           //获取书籍信息
+	r.PUT("/book/update/:id", controller.UpdateBookFunc) //修改书籍信息
+	r.DELETE("/book/delete", controller.DeleteBookFunc)
 }
