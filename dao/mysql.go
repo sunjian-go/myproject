@@ -18,6 +18,6 @@ func InitMysql() {
 	}
 	DB = db
 	if err = DB.AutoMigrate(model.User{}, model.Book{}); err != nil {
-		fmt.Println("创建表结构失败")
+		fmt.Println("创建表结构失败") //asaasass
 	}
 }
